@@ -88,7 +88,8 @@ public class AppOficina {
     static int exibirMenuOrdenadores() {
         cabecalho();
         System.out.println("1 - Bolha");
-        System.out.println("2 - Inserção");     
+        System.out.println("2 - Inserção");
+        System.out.println("3 - Merge");
         System.out.println("0 - Finalizar");
        
         return lerNumero("Digite sua opção", Integer.class);
@@ -132,6 +133,20 @@ public class AppOficina {
         return localizado;
     }
 
+    static Produto localizarDescricao() {
+        cabecalho();
+        System.out.println("Localizando um produto");
+        int numero = lerNumero("Digite o identificador do produto", Integer.class);
+        Produto localizado = null;
+        
+        for (int i = 0; i < quantProdutos && localizado == null; i++) {
+            if (produtos[i].hashCode() == descricao)
+                localizado = produtos[i];
+        }
+        return localizado;
+
+    }
+
     private static void mostrarProduto(Produto produto) {
         cabecalho();
         String mensagem = "Dados inválidos";
@@ -158,7 +173,9 @@ public class AppOficina {
     static int exibirMenuCriterioOrdenacao() {
         cabecalho();
         System.out.println("1 - Padrão");
-        System.out.println("2 - Ordenar por Valor");     
+        System.out.println("2 - Ordenar por Valor");
+        System.out.println("3 - Ordenar por preço");
+        System.out.println("4 - Merge");       
         System.out.println("0 - Finalizar");
        
         return lerNumero("Digite sua opção", Integer.class);
@@ -174,10 +191,14 @@ public class AppOficina {
         switch (opcao) {
             case 1 -> ordenador = new Bubblesort<>();
             case 2 -> ordenador = new InsertSort<>();
+            case 3 -> ordenador = new Mergesort<>();
+
         }
         switch (ordenacao) {
             case 1 -> comp = Produto::compareTo;
             case 2 -> comp = new ComparadorPorValor();
+            case 2 -> comp = new ComparadorPorPreço();
+            case 4 -> comp = Produto::compareTo;
         }
 
         if(ordenador!=null){

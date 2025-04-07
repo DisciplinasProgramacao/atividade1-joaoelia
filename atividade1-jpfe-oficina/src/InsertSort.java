@@ -65,9 +65,5 @@ public class InsertSort<T extends Comparable<T>> implements IOrdenador<T>{
 	
 	public double getTempoOrdenacao() {
 	    return  Duration.between(inicio, termino).toMillis();	    
-	}
-
-	
-
-	
+	}	
 }
